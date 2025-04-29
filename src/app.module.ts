@@ -8,7 +8,9 @@ import { AppService } from './app.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-import { PostModule } from './post/post.module';
+import { AnggotaModule } from './anggota/anggota.module';  // Import AnggotaModule
+import { JadwalModule } from './jadwal/jadwal.module';      // Import JadwalModule
+import { MentorModule } from './mentor/mentor.module';      // Import MentorModule
 
 @Module({
   imports: [
@@ -33,7 +35,9 @@ import { PostModule } from './post/post.module';
     }),
     AuthModule,
     UserModule,
-    PostModule
+    AnggotaModule,  // Tambahkan AnggotaModule ke dalam imports
+    JadwalModule,   // Tambahkan JadwalModule ke dalam imports
+    MentorModule,   // Tambahkan MentorModule ke dalam imports
   ],
   controllers: [AppController],
   providers: [

@@ -16,13 +16,15 @@ import { UserService } from '../user/user.service';
       useFactory: async (configService: ConfigService) => ({
         global: true,
         secret: configService.get<string>('JWT_SECRET'),
-        signOptions: {
-          expiresIn: '1d',
-        },
+        signOptions: { expiresIn: '1d' },
       }),
     }),
   ],
   controllers: [AuthController],
   providers: [UserService, AuthService],
+  exports: [JwtModule, AuthService], // ✅ ini sudah benar!
 })
 export class AuthModule {}
+
+
+
