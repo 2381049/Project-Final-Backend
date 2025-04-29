@@ -12,7 +12,7 @@ async function bootstrap() {
     origin: [
       'http://localhost:5173', // Izinkan origin frontend development Anda
       // Ganti placeholder ini dengan URL frontend Vercel Anda yang sebenarnya
-      'https://final-project-front-end-pi.vercel.app/' // <-- URL FRONTEND VERCEL DARI SNIPPET KEDUA
+      'https://final-project-front-end-pi.vercel.app' // <-- URL FRONTEND VERCEL DARI SNIPPET KEDUA
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', // Metode yang diizinkan
     allowedHeaders: 'Content-Type, Accept, Authorization', // Header yang diizinkan
