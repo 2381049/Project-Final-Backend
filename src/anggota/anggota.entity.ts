@@ -11,6 +11,6 @@ export class Anggota {
   @Column()
   email: string;
 
-  @Column()
+  @Column({ name: 'nomor_telepon' }) // <-- Tambahkan ini untuk mapping eksplisit
   nomorTelepon: string;
 }

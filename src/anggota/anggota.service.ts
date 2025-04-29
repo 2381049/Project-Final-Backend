@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Anggota } from './anggota.entity';
-import { CreateAnggotaDto } from './dto/crate-anggota.dto';
+import { CreateAnggotaDto } from './dto/create-anggota.dto';
 
 @Injectable()
 export class AnggotaService {
