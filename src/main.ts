@@ -7,32 +7,34 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
 
-  // --- Modifikasi CORS ---
+  // --- Konfigurasi CORS Lengkap ---
   app.enableCors({
     origin: [
       'http://localhost:5173', // Izinkan origin frontend development Anda
-      // Tambahkan URL frontend production Anda di sini nanti jika sudah deploy
-      // 'https://nama-frontend-anda.vercel.app' 
+      // Ganti placeholder ini dengan URL frontend Vercel Anda yang sebenarnya
+      'https://nama-frontend-anda.vercel.app' // <-- URL FRONTEND VERCEL DARI SNIPPET KEDUA
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', // Metode yang diizinkan
-    allowedHeaders: 'Content-Type, Accept, Authorization', // Header yang diizinkan (PENTING: tambahkan Authorization)
-    credentials: true, // Izinkan pengiriman credentials (penting untuk Auth)
+    allowedHeaders: 'Content-Type, Accept, Authorization', // Header yang diizinkan
+    credentials: true, // Izinkan pengiriman credentials
   });
-  // ----------------------
+  // -----------------------------
 
+  // Konfigurasi Swagger
   const config = new DocumentBuilder()
     .setTitle('Simple Social Media API')
     .addBearerAuth()
     .addSecurityRequirements('bearer')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  // Serve raw OpenAPI JSON
+  
+  // Endpoint untuk JSON Swagger
   app.use('/api/swagger-json', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(document);
   });
 
-  // Serve Swagger UI HTML (from CDN)
+  // Endpoint untuk Swagger UI
   app.use('/api/swagger', (req, res) => {
     res.send(`
       <!DOCTYPE html>
@@ -57,7 +59,10 @@ async function bootstrap() {
     `);
   });
 
+  // Global Pipe untuk Validasi
   app.useGlobalPipes(new ValidationPipe());
+
+  // Jalankan Aplikasi
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
